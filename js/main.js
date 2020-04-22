@@ -54,20 +54,35 @@ $(document).ready(function() {
                 maintainAspectRatio: false
             }
         });
+        
+        showAllCountryInfo(data);
 
-        function fitChart(){
-            var chartCanvas = document.getElementById('myChart');
-            var maxWidth = chartCanvas.parentElement.parentElement.clientWidth;
-            var width = Math.max(mayChart.data.labels.length * xAxisLabelMinWidth, maxWidth);
-
-            chartCanvas.parentElement.style.width = width +'px';
+        //integrate to the select option all affected countries 
+        for (let countries of data) {
+            var x = document.getElementById("select-countries");
+            var option = document.createElement("option");
+            option.text = countries.country;
+            x.add(option);
         }
 
-        let data_html_template = "";
+        let selected_country;
+        $("select").change(function () {    
+            selected_country = document.getElementById("select-countries").value
+            if (selected_country == "Select All Country") {
+                showAllCountryInfo(data);
+            } else {    
+                showAllCountryInfo(data, selected_country);
+            }
+        });  
 
+    });
+
+    function showAllCountryInfo(data, filter = "Select All Country") {
+        let data_html_template = "";
+        
         for (let item of data) {
-            data_html_template += document.getElementById("result").innerHTML = ` 
-                <div class="col-lg-3 col col-md-3 col-sm-12 col-xs-12">
+            let data_template = document.getElementById("result").innerHTML = ` 
+                <div class="col-lg-3 col col-md-3 col-sm-12 col-xs-12" id="country-info">
                     <div class="card bg-light mb-3" style="max-width: 18rem;">
                         <div class="card-header bg-info text-white">${item.country} <img src="${item.countryInfo.flag}" style="width:30px;height:20px;"></div>
                         <div class="card-body">
@@ -80,8 +95,16 @@ $(document).ready(function() {
                     </div>
                 </div>
             `;
+            
+            if (filter != "Select All Country") {
+                if (filter == item.country) {
+                    data_html_template += data_template;
+                }
+            } else {
+                data_html_template += data_template;
+            }
         }
         
         return document.getElementById("result").innerHTML = data_html_template;
-    });
+    }
 });
