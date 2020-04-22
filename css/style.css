@@ -2,3 +2,14 @@
 body {
   font-family: "Baloo Thambi 2", cursive;
 }
+
+div.chartWrapper {
+  position: relative;
+  overflow: auto;
+  width: 100%;
+}
+
+div.chartContainer {
+  position: relative;
+  height: 300px;
+}

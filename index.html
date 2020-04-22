@@ -33,20 +33,24 @@
         </h5>
     </div>  
 
-    <!-- Total number of confirmed and all the other info -->
+    <!-- Total number of affected and all the other info -->
     <div class="container-fluid my-5">
         <div class="row text-center">
             <div class="col-3 text-warning">
-                <h5>Cases</h5>
+                <h5>Affected Countries</h5>
+                <p id="total_affected"></p>
             </div>
             <div class="col-3 text-info">
-                <h5>Active</h5>
+                <h5>Cases</h5>
+                <p id="total_cases"></p>
             </div>
             <div class="col-3 text-success">
-                <h5>Recovered</h5>
+                <h5>Recoveries</h5>
+                <p id="total_recoveries"></p>
             </div>
             <div class="col-3 text-danger">
-                <h5>Deceased</h5>
+                <h5>Deaths</h5>
+                <p id="total_deaths"></p>
             </div>
         </div>
     </div>
@@ -55,6 +59,21 @@
     <div class="container-fluid bg-light p-3 my-5 text-center">
         <h5 class="text-info">"Prevention is the Cure."</h5>
         <p class="text-muted">Stay Indoors Stay Safe.</p>
+    </div>
+    
+    <!-- Used by Chart.js -->
+    <div class="chartWrapper">
+        <div class="chartContainer">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    
+    <!-- Bottom Note -->
+    <div class="container text-center my-5">
+      <h6 class="text-info">
+        *Click on the Confirmed/Recovered/Deaths buttons above to see the chart
+        individually.*
+      </h6>
     </div>
 
     <!-- Footer -->
@@ -68,5 +87,9 @@
   
     <!-- My jQuery -->
     <script src="js/main.js"></script>
+    <script src="js/mychart.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
 </html>
