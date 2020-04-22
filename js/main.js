@@ -62,5 +62,26 @@ $(document).ready(function() {
 
             chartCanvas.parentElement.style.width = width +'px';
         }
+
+        let data_html_template = "";
+
+        for (let item of data) {
+            data_html_template += document.getElementById("result").innerHTML = ` 
+                <div class="col-lg-3 col col-md-3 col-sm-12 col-xs-12">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header bg-info text-white">${item.country} <img src="${item.countryInfo.flag}" style="width:30px;height:20px;"></div>
+                        <div class="card-body">
+                            <p class="card-text">Total Cases: ${item.cases}</p>
+                            <p class="card-text">Today Cases: ${item.todayCases}</p>
+                            <p class="card-text">Recovered: ${item.recovered}</p>
+                            <p class="card-text">Deaths: ${item.deaths}</p>
+                            <p class="card-text">Today Deaths: ${item.todayDeaths}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        return document.getElementById("result").innerHTML = data_html_template;
     });
 });
