@@ -1,6 +1,7 @@
 /* Changing the font-family of all the elements in the project */
-body {
+html, body {
   font-family: "Baloo Thambi 2", cursive;
+  margin:0;
 }
 
 div.chartWrapper {
@@ -12,4 +13,9 @@ div.chartWrapper {
 div.chartContainer {
   position: relative;
   height: 300px;
+}
+
+#map {
+  width: 100vw;
+  height: 70vh;
 }

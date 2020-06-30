@@ -20,6 +20,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
+    <!-- Mapbox GL -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+
     <link rel="stylesheet" href="css/style.css" />
 
     <title>Covid-19 Tracker</title>
@@ -61,6 +64,18 @@
         <p class="text-muted">Stay Indoors Stay Safe.</p>
     </div>
     
+    <!-- map box appear here -->
+    <div class="container-fluid bg-light p-3 my-5 text-center">
+        <div id='map'></div>
+    </div>
+
+    <!-- Top Note -->
+    <div class="container text-center my-5">
+        <h6 class="text-info">
+          *Click on the Cases/Recovered/Deaths buttons bellow to see the chart
+          individually.*
+        </h6>
+      </div>
     <!-- Used by Chart.js -->
     <div class="chartWrapper">
         <div class="chartContainer">
@@ -68,13 +83,6 @@
         </div>
     </div>
     
-    <!-- Bottom Note -->
-    <div class="container text-center my-5">
-      <h6 class="text-info">
-        *Click on the Confirmed/Recovered/Deaths buttons above to see the chart
-        individually.*
-      </h6>
-    </div>
 
     <div class="container-fluid text-center my-5 affected-countries">
         <h4 class="text-info ">Affected Countries</h4>
@@ -100,4 +108,6 @@
     <!-- Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
+    <!-- Mapbox GL JS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
 </html>

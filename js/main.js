@@ -1,33 +1,51 @@
 $(document).ready(function() {
+    
+
     $.getJSON("https://corona.lmao.ninja/v2/all", function(data) {
         let total_cases = data.cases;
         let total_affected_countries = data.affectedCountries;
         let total_recoveries = data.recovered;
         let total_deaths = data.deaths;
-        
-        console.log(data);
 
         $("#total_affected").append(total_affected_countries);
         $("#total_cases").append(total_cases);
         $("#total_recoveries").append(total_recoveries);
-        $("#total_deaths").append(total_deaths);   
+        $("#total_deaths").append(total_deaths);
+        
     });
 
     $.getJSON("https://corona.lmao.ninja/v2/countries", function(data) {
+        console.log(data)
+        const mapbox_token = "pk.eyJ1Ijoia2llcnZzIiwiYSI6ImNrYzFkaXh5eDA5YXEycm9hc3Rvb3N0NXgifQ.Fu1NwruEXQDGGQEMn4KRsQ";
+
+        mapboxgl.accessToken = mapbox_token;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/dark-v10',
+            zoom: 1.5,
+            center: [0, 20]
+        });
+        
         let countries = [];
         let cases = [];
         let recovered = [];
         let deaths = [];
 
         $.each(data, function(id, obj) {
+            let lat = obj.countryInfo.lat;
+            let long = obj.countryInfo.long;
+
+            new mapboxgl.Marker({
+                color: "red"
+            }).setLngLat([long, lat]).addTo(map);
+
             countries.push(obj.country);
             cases.push(obj.cases);
             recovered.push(obj.recovered);
             deaths.push(obj.deaths);
         });
 
-        var xAxisLabelMinWidth = 15; // Replace this with whatever value you like
-        var myChart = new Chart(document.getElementById('myChart').getContext('2d'), {
+        let myChart = new Chart(document.getElementById('myChart').getContext('2d'), {
             type: 'line',
             data: {
                 labels: countries,
@@ -59,8 +77,8 @@ $(document).ready(function() {
 
         //integrate to the select option all affected countries 
         for (let countries of data) {
-            var x = document.getElementById("select-countries");
-            var option = document.createElement("option");
+            let x = document.getElementById("select-countries");
+            let option = document.createElement("option");
             option.text = countries.country;
             x.add(option);
         }
@@ -78,6 +96,7 @@ $(document).ready(function() {
     });
 
     function showAllCountryInfo(data, filter = "Select All Country") {
+
         let data_html_template = "";
         
         for (let item of data) {
